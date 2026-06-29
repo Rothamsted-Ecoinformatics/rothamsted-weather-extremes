@@ -4,11 +4,29 @@ import plotly.express as px
 
 st.set_page_config(
     page_title="Rothamsted Temperature Extremes",
+	page_icon="rres-logo.png",
     layout="wide"
 )
 
-st.title("Rothamsted Temperature Extremes")
+col1, col2 = st.columns([6, 1])
 
+with col1:
+    st.title("Rothamsted Weather Extremes")
+    st.caption("Exploring historical temperature extremes at Rothamsted Research, UK")
+
+with col2:
+    st.image("rres-logo.jpg", width=200)
+
+
+st.markdown("""
+This application explores historical temperature extremes recorded at Rothamsted, Harpenden, UK, from 1878 to June 2026.
+
+Select whether to analyse minimum or maximum temperatures and specify a threshold temperature. The chart shows:
+
+- **Bubble size** = number of events exceeding the threshold.
+- **Bubble colour** = mean temperature of those events.
+- Hover over any bubble to view detailed values.
+""")
 @st.cache_data
 def load_data():
     data = pd.read_csv("all_temps.csv")
@@ -47,7 +65,8 @@ with st.form("query_form"):
     with col2:
         temp_type = st.radio(
             "Temperature type",
-            ["tmin", "tmax"],
+			["tmin", "tmax"],
+			index=1,
             horizontal=True
         )
 
@@ -137,3 +156,10 @@ else:
 
     with st.expander("Show matching daily records"):
         st.dataframe(filtered, use_container_width=True)
+
+
+st.divider()
+
+st.caption("""
+Data provided from the Rothamsted Research Electronic Rothamsted Archive (e-RA). e-RA, its datasets, information and other resources, are part of the Rothamsted Long-Term Experiments - National Bioscience Research Infrastructure (RLTE-NBRI), funded by the UK Research and Innovation - Biotechnology and Biological Sciences Research Council (UKRI-BBSRC) under award BBS/E/RH/23NB0007 (2023-2028). The RLTE-NBRI is also supported by the Lawes Agricultural Trust.
+""")
