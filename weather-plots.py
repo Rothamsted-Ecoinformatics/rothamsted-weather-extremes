@@ -11,7 +11,7 @@ st.set_page_config(
 col1, col2 = st.columns([6, 1])
 
 with col1:
-    st.title("Rothamsted Weather Extremes")
+    st.title("Rothamsted Temperature Extremes")
     st.caption("Exploring historical temperature extremes at Rothamsted Research, UK")
 
 with col2:
