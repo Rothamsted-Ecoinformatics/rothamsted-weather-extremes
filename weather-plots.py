@@ -149,13 +149,13 @@ else:
         template="plotly_white"
     )
 
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     with st.expander("Show annual summary data"):
-        st.dataframe(annual, use_container_width=True)
+        st.dataframe(annual, width="stretch")
 
     with st.expander("Show matching daily records"):
-        st.dataframe(filtered, use_container_width=True)
+        st.dataframe(filtered, width="stretch")
 
 
 st.divider()
